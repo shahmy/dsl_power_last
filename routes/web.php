@@ -48,6 +48,10 @@ Route::get('/single-package/{id}/{slug}', [SiteController::class, 'singlePackage
 Route::get('/blog', [SiteController::class, 'blog'])->name('blog');
 Route::get('/single-blog/{id}/{slug}', [SiteController::class, 'singleBlog'])->name('single-blog');
 
+Route::get('/list-category-products/{cat_id}/{slug}', [SiteController::class, 'listProductsBasedCategory'])->name('list.category.products');
+
+Route::get('/show-single-product/{product_id}/{slug}', [SiteController::class, 'showSingleProductDetail'])->name('show.single.product');
+
 Route::post('/load-application-items', [SiteController::class, 'loadAppItems'])->name('load.application.items');
 
 Route::post('/submit-custom-quote', [SiteController::class, 'submitCustomQuote'])->name('submit.custom.quote');

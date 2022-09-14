@@ -83,8 +83,8 @@ class SiteController extends Controller
 
 
     public function submitCustomQuote(Request $request){
-        
-        
+
+
         $validated = $request->validate([
             'full_name' => 'required',
             'email_address' => 'required|email',
@@ -93,8 +93,8 @@ class SiteController extends Controller
              'address' => 'required',
         ]);
 
-        
-        
+
+
         $full_name = $request->full_name;
         $email_address = $request->email_address;
         $phone_no = $request->phone_no;
@@ -112,9 +112,9 @@ class SiteController extends Controller
         }
 
         print_r($loadItemName[3]); */
-        
+
         try {
-            
+
             Mail::to('praneetha@douglas.lk')->cc($email_address)
             ->send(new CustomQuote($full_name,$email_address,$phone_no,$mobile_no,$address,$loadItemName,$loadItemWatts,$LoadItemQuantity));
 
@@ -122,13 +122,13 @@ class SiteController extends Controller
             Session::flash('alert-class', 'alert-success');
 
             return redirect()->route('contact-us')->withInput();
-        
+
         } catch (Exception $ex) {
-        
+
             return "We've got errors!";
         }
 
-        
+
 
     }
 
@@ -137,10 +137,6 @@ class SiteController extends Controller
         $appId = $request->appId;
         $appItems = LoadItem::where('appliance_category_id',$appId)->get();
         return json_encode($appItems);
-
-    }
-
-    public function appendItemWatts(){
 
     }
 
@@ -234,4 +230,31 @@ class SiteController extends Controller
         return view('site.single_post',compact('singlePost','page_title','meta_description','meta_keywords','categories','tags','recentPost'));
 
     }
+
+
+    public function listProductsBasedCategory($cat_id,$slug = null){
+
+        $page_title = 'List Products';
+        $meta_description = 'Products Details';
+        $meta_keywords = 'products, categories';
+
+        $productList = Product::with('productCategory')->where(array('status'=>1, 'product_category_id'=>$cat_id))->get();
+        $productCategoryList = ProductCategory::with('childrenCategory')->where('parent',0)->get();
+        $singleCategory = ProductCategory::findOrFail($cat_id);
+        return view('site.products',compact('productList','page_title','meta_description','meta_keywords','productCategoryList','singleCategory'));
+
+    }
+
+    public function showSingleProductDetail($product_id,$slug = null){
+
+        $page_title = 'Single Products';
+        $meta_description = 'Products Details';
+        $meta_keywords = 'products, categories';
+
+        $singleProduct = Product::with('galleries')->findOrFail($product_id);
+        $recetProduct = Product::where('id','<>',$product_id)->where('status',1)->where('product_category_id',$singleProduct->product_category_id)->limit(6)->get();
+       return view('site.single-product',compact('singleProduct','page_title','meta_description','meta_keywords','recetProduct'));
+
+    }
+
 }

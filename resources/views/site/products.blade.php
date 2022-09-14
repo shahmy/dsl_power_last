@@ -3,12 +3,12 @@
 @section('content')
 <section class="page-title page-title-9" id="page-title">
     <div class="page-title-wrap bg-overlay bg-overlay-dark-2">
-        <div class="bg-section"><img src="assets/images/page-titles/9.jpg" alt="Background" /></div>
+        <div class="bg-section"><img src="{{asset('site/assets/images/page-titles/9.jpg')}}" alt="Background" /></div>
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-6 offset-lg-3">
                     <div class="title text-center">
-                        <h1 class="title-heading">products</h1>
+                        <h1 class="title-heading">{{$singleCategory->name}}</h1>
                     </div>
                 </div>
             </div>
@@ -17,8 +17,8 @@
     <div class="breadcrumb-wrap">
         <div class="container">
             <ol class="breadcrumb d-flex">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Products</li>
+                <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{$singleCategory->name}}</li>
             </ol>
         </div>
     </div>
@@ -28,196 +28,34 @@
 <section class="shop" id="shop">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-lg-9">
+            <div class="col-12 col-lg-12">
 
                 <div class="row">
+                    @if (count($productList) > 0)
+                    @foreach ($productList as $product )
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="product-item" data-hover="">
                             <div class="product-img-wrap">
-                                <div class="product-img"><img
-                                        src="assets/images/packages/invetor/solar-pcu-143512v-3.webp"
-                                        alt="Product" /><a class="add-to-cart" href="#"> View Details</a><span
+                                <div class="product-img"><img src="{{ asset('storage/'.$product->featured_image) }}" alt="{{$product->name}}" /><a class="add-to-cart" href="{{route('show.single.product',[$product->id, \Illuminate\Support\Str::slug($product->name)])}}"> View Details</a><span
                                         class="badge d-none"></span>
                                 </div>
-
                             </div>
-
                             <div class="product-content">
-                                <div class="product-title"><a href="#">Product 1</a></div>
-
-
-
+                                <div class="product-title"><a href="{{route('show.single.product',[$product->id, \Illuminate\Support\Str::slug($product->name)])}}">{{$product->name}}</a></div>
                             </div>
 
                         </div>
 
                     </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="product-item" data-hover="">
-                            <div class="product-img-wrap">
-                                <div class="product-img"><img
-                                        src="assets/images/packages/solar/solar-pv-module-150w-12v-5.webp"
-                                        alt="Product" /><a class="add-to-cart" href="#"> View Details</a><span
-                                        class="badge d-none"></span>
-                                </div>
+                    @endforeach
 
-                            </div>
-
-                            <div class="product-content">
-                                <div class="product-title"><a href="#">Product 2</a>
-                                </div>
-
-
-
-                            </div>
-
-                        </div>
-
+                    @else
+                    <div class="col-12 col-md-12 col-lg-12">
+                        <h4 class="text-center">Sorry! products not available !</h4>
                     </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="product-item" data-hover="">
-                            <div class="product-img-wrap">
-                                <div class="product-img"><img
-                                        src="assets/images/packages/invetor/solar-pcu-143512v-4.webp"
-                                        alt="Product" /><a class="add-to-cart" href="#"> View Details</a>
-                                </div>
 
-                            </div>
+                    @endif
 
-                            <div class="product-content">
-                                <div class="product-title"><a href="#">Product 3</a></div>
-
-
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="product-item" data-hover="">
-                            <div class="product-img-wrap">
-                                <div class="product-img"><img
-                                        src="assets/images/packages/solar/solar-pv-module-150w-12v-4.webp"
-                                        alt="Product" /><a class="add-to-cart" href="#"> View Details</a><span
-                                        class="badge d-none"></span>
-                                </div>
-
-                            </div>
-
-                            <div class="product-content">
-                                <div class="product-title"><a href="#">Product 4</a></div>
-
-
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="product-item" data-hover="">
-                            <div class="product-img-wrap">
-                                <div class="product-img"><img
-                                        src="assets/images/packages/invetor/solar-pcu-143512v-5.webp"
-                                        alt="Product" /><a class="add-to-cart" href="#"> View Details</a><span
-                                        class="badge d-none"></span>
-                                </div>
-
-                            </div>
-
-                            <div class="product-content">
-                                <div class="product-title"><a href="#">Product 5</a></div>
-
-
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="product-item" data-hover="">
-                            <div class="product-img-wrap">
-                                <div class="product-img"><img
-                                        src="assets/images/packages/solar/solar-pv-module-150w-12v-3.webp"
-                                        alt="Product" /><a class="add-to-cart" href="#"> View Details</a>
-                                </div>
-
-                            </div>
-
-                            <div class="product-content">
-                                <div class="product-title"><a href="#">Product 6</a></div>
-
-
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="product-item" data-hover="">
-                            <div class="product-img-wrap">
-                                <div class="product-img"><img
-                                        src="assets/images/packages/solar/solar-pv-module-150w-12v-4.webp"
-                                        alt="Product" /><a class="add-to-cart" href="#"> View Details</a><span
-                                        class="badge d-none"></span>
-                                </div>
-
-                            </div>
-
-                            <div class="product-content">
-                                <div class="product-title"><a href="#">Product 7</a></div>
-
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="product-item" data-hover="">
-                            <div class="product-img-wrap">
-                                <div class="product-img"><img
-                                        src="assets/images/packages/solar/solar-pv-module-150w-12v-5.webp"
-                                        alt="Product" /><a class="add-to-cart" href="#">View Details</a><span
-                                        class="badge d-none"></span>
-                                </div>
-
-                            </div>
-
-                            <div class="product-content">
-                                <div class="product-title"><a href="#">Product 8</a></div>
-
-
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="product-item" data-hover="">
-                            <div class="product-img-wrap">
-                                <div class="product-img"><img
-                                        src="assets/images/packages/solar/solar-pv-module-150w-12v-3.webp"
-                                        alt="Product" /><a class="add-to-cart" href="#"> View Details</a><span
-                                        class="badge d-none"></span>
-                                </div>
-
-                            </div>
-
-                            <div class="product-content">
-                                <div class="product-title"><a href="#">Product 9</a></div>
-
-
-
-                            </div>
-
-                        </div>
-
-                    </div>
                 </div>
 
                 <!-- <div class="row">
@@ -234,7 +72,7 @@
             </div>
 
 
-            <div class="col-12 col-lg-3">
+            {{-- <div class="col-12 col-lg-3">
                 <div class="sidebar sidebar-shop">
 
                     <div class="widget widget-categories">
@@ -256,7 +94,7 @@
 
                 </div>
 
-            </div>
+            </div> --}}
 
         </div>
 

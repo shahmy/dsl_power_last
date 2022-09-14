@@ -68,7 +68,7 @@
                                 @if (count($category->childrenCategory) > 0)
                                 <ul class="dropdown-menu dropdown-submenu">
                                     @foreach ($category->childrenCategory as $child )
-                                        <li class="nav-item"><a href="#"><span>{{$child->name}}</span></a></li>
+                                        <li class="nav-item"><a href="{{route('list.category.products',[$child->id,\Illuminate\Support\Str::slug($child->name)])}}"><span>{{$child->name}}</span></a></li>
                                     @endforeach
                                 </ul>
                                 @endif
