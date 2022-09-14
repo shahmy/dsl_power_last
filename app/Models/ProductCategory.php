@@ -11,7 +11,7 @@ class ProductCategory extends Model
     use HasFactory;
     use Searchable;
 
-    protected $fillable = ['name', 'status'];
+    protected $fillable = ['name','parent', 'status'];
 
     protected $searchableFields = ['*'];
 
@@ -25,4 +25,12 @@ class ProductCategory extends Model
     {
         return $this->hasMany(Product::class);
     }
+
+    public function childrenCategory(){
+        return $this->hasMany(ProductCategory::class, 'parent', 'id');
+    }
+
+    public function parentCategory(){
+        return $this->hasOne(ProductCategory::class, 'id', 'parent');
+      }
 }

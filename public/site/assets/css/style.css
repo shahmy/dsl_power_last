@@ -18034,7 +18034,8 @@ ul.dropdown-menu>li.has-dropdown>a:before {
 .about .about-block .block-left p {
     font-size: 16px;
     line-height: 27px;
-    margin-bottom: 32px
+    margin-bottom: 32px;
+    text-align: justify;
 }
 
 .about .about-block .block-left .btn {
@@ -18949,3 +18950,23 @@ section.quote.quote-1 {
     width: 5% !important;
 }
 
+
+.dropdown-menu .dropdown-submenu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: -5px;
+}
+
+.dropdown-menu .dropdown-submenu-left {
+    right: 100%;
+    left: auto;
+}
+
+.dropdown-menu>li:hover>.dropdown-submenu {
+    display: block;
+    width: 235px;
+    padding: 24px 40px 25px;
+    background-color: var(--global--color-white);
+    border-radius: 0 8px 8px 8px;
+}

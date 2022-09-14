@@ -41,9 +41,4 @@ class Product extends Model
         return $this->belongsToMany(Package::class);
     }
 
-    /* public function listCategoryProducts($product_category_id){
-
-        return
-
-    } */
 }

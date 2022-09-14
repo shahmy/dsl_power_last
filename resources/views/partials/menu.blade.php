@@ -59,43 +59,45 @@
 
                     <li class="nav-item {{ (request()->is('packages')) ? 'active' : '' }}" id="package" data-hover="Packages"><a href="{{ route('packages') }}"><span>Packages</span></a></li>
 
+                    <li class="nav-item has-dropdown" data-hover="Products"><a class="dropdown-toggle" href="#"
+                        data-toggle="dropdown"><span>Products</span></a>
+                      <ul class="dropdown-menu">
+                        @foreach ($productsCategories as $category )
+                            <li class="nav-item has-dropdown" data-hover="{{$category->name}}">
+                            <a href="#" data-toggle="dropdown"><span>{{$category->name}}</span></a>
+                                @if (count($category->childrenCategory) > 0)
+                                <ul class="dropdown-menu dropdown-submenu">
+                                    @foreach ($category->childrenCategory as $child )
+                                        <li class="nav-item"><a href="#"><span>{{$child->name}}</span></a></li>
+                                    @endforeach
+                                </ul>
+                                @endif
+                            </li>
+                        @endforeach
+                        {{-- <li class="nav-item has-dropdown" data-hover="Pannels">
+                          <a href="#" data-toggle="dropdown"><span>Pannels</span></a>
+                          <ul class="dropdown-menu dropdown-submenu">
+                            <li class="nav-item"><a href="#"><span>Mono & Poly</span></a></li>
+                          </ul>
+                        </li>
+
+                        <li class="nav-item has-dropdown" data-hover="Battery">
+                          <a href="#"><span>Battery</span></a>
+                          <ul class="dropdown-menu dropdown-submenu">
+                            <li class="nav-item"><a href="#"><span>Solar Tubler</span></a></li>
+                            <li class="nav-item"><a href="#"><span>Inverter Tubler</span></a></li>
+                          </ul>
+                        </li> --}}
+
+                      </ul>
+                    </li>
+
                     <li class="nav-item {{ (request()->is('leaderships')) ? 'active' : '' }}"  id="leadership" data-hover="Leadership"><a href="{{ route('leaderships') }}"><span>Leadership</span></a></li>
 
                     <li class="nav-item {{ (request()->is('blog')) ? 'active' : '' }}" id="blog" data-hover="Blog Us"><a href="{{ route('blog') }}"><span>Blog</span></a></li>
 
                     <li class="nav-item {{ (request()->is('partners')) ? 'active' : '' }}" id="partners" data-hover="Partners"><a href="{{ route('partners') }}"><span>Partners</span></a></li>
 
-
-                    {{-- <li class="nav-item {{ (request()->is('contact-us')) ? 'active' : '' }}" id="contact" data-hover="Contact Us"><a href="{{ route('contact-us') }}"><span>Contact Us</span></a></li>
- --}}
-
-
-
-
-                    {{-- <li class="nav-item has-dropdown" data-hover=""><a class="dropdown-toggle" href="#"
-                            data-toggle="dropdown"><span>projects</span></a>
-                        <ul class="dropdown-menu">
-                            <li class="nav-item"><a href="#"><span>projects 01</span></a></li>
-                            <li class="nav-item"><a href="#"><span>projects 02</span></a></li>
-                            <li class="nav-item"><a href="#"><span>projects 03</span></a></li>
-                            <li class="nav-item"><a href="#"><span>project 04</span></a></li>
-                        </ul>
-                    </li>
-
-
-                    <li class="nav-item has-dropdown" data-hover=""><a class="dropdown-toggle" href="#"
-                            data-toggle="dropdown"><span>company</span></a>
-                        <ul class="dropdown-menu">
-                            <li class="nav-item"><a href="#"><span>about us</span></a></li>
-                            <li class="nav-item"><a href="#"><span>how it works</span></a></li>
-                            <li class="nav-item"><a href="#"><span>leadership team</span></a></li>
-                            <li class="nav-item"><a href="#"><span>awards &amp; recognition</span></a></li>
-                            <li class="nav-item"><a href="#"><span>shop</span></a></li>
-                        </ul>
-                    </li>
-
-                    <li class="#" data-hover=""><a class="#" href="#" data-toggle="dropdown"><span>blog</span></a></li>
-                    <li class="nav-item" id="contact" data-hover=""><a href="#"><span>contact</span></a></li> --}}
                 </ul>
                 <div class="module-holder">
                     <div class="module module-search">

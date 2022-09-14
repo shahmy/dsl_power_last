@@ -66,7 +66,7 @@
                         <div class="row">
 
                             <div class="col-12 col-lg-12">
-                                <div class="block-left">
+                                <div class="block-left text-justify">
                                     {!! $aboutPage->description !!}
                                 </div>
                             </div>

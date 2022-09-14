@@ -2,14 +2,15 @@
 
 namespace App\Filament\Resources;
 
-use App\Models\ProductCategory;
 use Filament\{Tables, Forms};
-use Filament\Resources\{Form, Table, Resource};
-use Filament\Forms\Components\Grid;
+use App\Models\ProductCategory;
 use Filament\Forms\Components\Card;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Resources\{Form, Table, Resource};
 use App\Filament\Resources\ProductCategoryResource\Pages;
 
 class ProductCategoryResource extends Resource
@@ -36,6 +37,16 @@ class ProductCategoryResource extends Resource
                             'lg' => 12,
                         ]),
 
+                    Select::make('parent')
+                        ->label('Parent Category')
+                        ->options(ProductCategory::get()->pluck('name', 'id'))
+                        ->searchable()
+                        ->columnSpan([
+                            'default' => 12,
+                            'md' => 12,
+                            'lg' => 12,
+                        ]),
+
                     Toggle::make('status')
                         ->rules(['required', 'boolean'])
                         ->columnSpan([
@@ -53,6 +64,7 @@ class ProductCategoryResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')->limit(50),
+                Tables\Columns\TextColumn::make('parentCategory.name')->limit(50),
                 Tables\Columns\BooleanColumn::make('status'),
             ])
             ->filters([
