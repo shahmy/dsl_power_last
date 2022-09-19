@@ -100,11 +100,11 @@
 
                 </ul>
                 <div class="module-holder">
-                    <div class="module module-search">
-                        <div class="module-icon module-icon-search"><i class="energia-search-Icon"></i></div>
+
+                    <div class="module-contact module-contact-2">
+                        <a class="btn btn--primary" href="{{ route('contact-us') }}">request a
+                            quote / Contact Us <i class="energia-arrow-right"></i></a>
                     </div>
-                    <div class="module-contact module-contact-2"><a class="btn btn--primary" href="{{ route('contact-us') }}">request a
-                            quote / Contact Us <i class="energia-arrow-right"></i></a></div>
 
                 </div>
 

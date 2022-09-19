@@ -56,6 +56,11 @@ Route::post('/load-application-items', [SiteController::class, 'loadAppItems'])-
 
 Route::post('/submit-custom-quote', [SiteController::class, 'submitCustomQuote'])->name('submit.custom.quote');
 
+Route::get('/customer-payment', [SiteController::class, 'customer_payment'])->name('customer.payment');
+Route::post('/search-customer-payment', [SiteController::class, 'search_customer_payment'])->name('search.customer.payment');
+
+Route::get('/cutomer-payment-return',[SiteController::class, 'customer_payment_return'])->name('cutomer.payment.return');
+
 
 Route::get('/link-storage', function() {
     Artisan::call('storage:link');
